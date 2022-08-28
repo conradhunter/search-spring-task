@@ -7,20 +7,21 @@ const Pagination = ({
   totalPages,
   paginate,
   page,
-  setPage
+  setPage,
 }) => {
   const pageNumbers = [];
+
 
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   function nextPage() {
-    setPage(page + 1)
+    setPage(page + 1);
   }
 
   function prevPage() {
-    setPage(page - 1)
+    setPage(page - 1);
   }
 
   function hidePrevButtons() {
@@ -55,7 +56,7 @@ const Pagination = ({
         </span>
         <div className="btn-container">
             {hidePrevButtons()}
-            {pageNumbers.slice(page - 1, page + 8).map(number => (
+            {pageNumbers.slice(page - 2, page + 3).map(number => (
               <button
                 className="pagination"
                 onClick={() => paginate(number)}

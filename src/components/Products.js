@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Product from "./Product";
 import './components.css';
 
-const Products = ({ dataResponse,loading }) => {
+const Products = ({ dataResponse, loading }) => {
 
   if (loading) {
     return <h1>Loading...</h1>
