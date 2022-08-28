@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 import Pagination from "./components/Pagination";
@@ -7,8 +7,8 @@ import SearchBar from "./components/SearchBar";
 
 function App() {
   const [dataResponse, setDataResponse] = useState([]);
-  const [cartCount, setCartCount] = useState(0);
-  const [query, setQuery] = useState("");
+  const [input, setInput] = useState('');
+  const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -25,16 +25,17 @@ function App() {
     setLoading(false);
     setProductsPerPage(data.pagination.perPage);
     setTotalProducts(data.pagination.totalResults);
-    setTotalPages(data.pagination.totalPages);
-    setQuery("");
+    setTotalPages(data.pagination.totalPages);;
+    setQuery('');
+    setInput('');
     setPage(1);
     console.log(data);
   };
 
   useEffect(() => {
     getData();
-    setCartCount(0);
   }, []);
+
 
   const indexOfLastProduct = page * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -48,10 +49,17 @@ function App() {
 
   return (
     <div className="App">
-      <SearchBar cartCount={cartCount} />
+      <SearchBar input={input} />
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={totalProducts}
+        paginate={paginate}
+        totalPages={totalPages}
+        page={page}
+        setPage={setPage}
+      />
       <Products
         loading={loading}
-        cartCount={cartCount}
         dataResponse={currentProducts}
       />
 
@@ -61,6 +69,7 @@ function App() {
         paginate={paginate}
         totalPages={totalPages}
         page={page}
+        setPage={setPage}
       />
       <Footer />
     </div>

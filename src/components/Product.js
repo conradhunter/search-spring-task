@@ -1,11 +1,10 @@
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef } from "react";
 
 const Product = ({ product }) => {
 
   const salePrice = useRef();
   const price = useRef();
+  
 
   const priceCheck = () => {
     if (salePrice > price) {
@@ -31,10 +30,6 @@ const Product = ({ product }) => {
       <div className="product__info">
         <p className="product__name">{product.name}</p>
         {priceCheck()}
-          <FontAwesomeIcon
-            className="product__cart"
-            icon={faCartShopping}
-          />
       </div>
     </div>
   );
