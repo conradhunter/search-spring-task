@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./components.css";
 
 const Pagination = ({
@@ -23,6 +23,30 @@ const Pagination = ({
     setPage(page - 1)
   }
 
+  function hidePrevButtons() {
+    if (page == 1) {
+      return (
+        <button onClick={prevPage} className="prev pagination hidden">Prev</button>
+      )
+    } else {
+      return (
+        <button onClick={prevPage} className="prev pagination">Prev</button>
+      )
+    }
+  }
+
+  function hideNextButton() {
+    if (page == totalPages) {
+      return (
+        <button onClick={nextPage} className="next pagination hidden">Next</button>
+      ) 
+    } else {
+      return (
+        <button onClick={nextPage} className="next pagination">Next</button>
+      )
+    }
+  }
+
   return (
     <div className="pagination-btns">
       <div className="flex-pag">
@@ -30,8 +54,8 @@ const Pagination = ({
           Showing page {page} of {totalPages} pages
         </span>
         <div className="btn-container">
-            <button onClick={prevPage} className="prev pagination">Prev</button>
-            {pageNumbers.slice(page -1, page + 9).map((number) => (
+            {hidePrevButtons()}
+            {pageNumbers.slice(page - 1, page + 8).map(number => (
               <button
                 className="pagination"
                 onClick={() => paginate(number)}
@@ -40,7 +64,7 @@ const Pagination = ({
                 {number}
               </button>
             ))}
-            <button onClick={nextPage} className="next pagination">Next</button>
+            {hideNextButton()}
         </div>
       </div>
     </div>

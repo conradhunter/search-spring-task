@@ -36,7 +36,7 @@ function App() {
     getData();
   }, []);
 
-
+// Get products for each page
   const indexOfLastProduct = page * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = dataResponse.slice(
