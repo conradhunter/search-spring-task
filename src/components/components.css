@@ -43,6 +43,7 @@ footer {
     align-items: center;
     justify-content: center;
     border-top: 2px solid darkgray;
+    margin-top: 25px;
 }
 
 #footer-logo {
@@ -62,6 +63,7 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 50px;
+    min-height: 100vh;
 }
 
 .product__container {
@@ -96,8 +98,8 @@ footer {
 
 .prices {
     display: flex;
-    width: 50%;
-    justify-content: space-between;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
 
 .product__img {
@@ -107,4 +109,32 @@ footer {
 .product__msrp {
     text-decoration: line-through;
     opacity: 0.4;
+    margin-right: 6px;
+    color: red;
+}
+
+
+/* Pagination */
+
+.pagination {
+    margin: 5px;
+    padding: 4px 6px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 1.5px solid black;
+    border-radius: 3px;
+    background-color: rgb(108, 208, 255);
+}
+
+.pagination-btns {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-pag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
