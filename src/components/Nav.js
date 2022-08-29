@@ -6,10 +6,6 @@ import logo from "../assets/searchspring-logo.png";
 
 const Nav = () => {
 
-    function reloadData() {
-        window.location.reload();
-    }
-
   return (
     <nav>
       <div className="top__nav">
@@ -36,24 +32,12 @@ const Nav = () => {
         </div>
       </div>
       <ul id="nav__links">
-        <button onClick={reloadData}>
           <li>All</li>
-        </button>
-        <button disabled>
           <li>Tops</li>
-        </button>
-        <button disabled>
           <li>Pants</li>
-        </button>
-        <button disabled>
           <li>Dresses</li>
-        </button>
-        <button disabled>
           <li>Shoes</li>
-        </button>
-        <button disabled>
           <li>Hats</li>
-        </button>
       </ul>
     </nav>
   );

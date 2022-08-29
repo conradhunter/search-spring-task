@@ -15,6 +15,8 @@ const Pagination = ({
     setPage(page - 1);
   }
 
+
+// Hide previous button if user is on the first page of content
   function hidePrevButtons() {
     if (page == 1) {
       return (
@@ -27,6 +29,7 @@ const Pagination = ({
     }
   }
 
+  // Hide next button if user is on the last page of content
   function hideNextButton() {
     if (page == totalPages) {
       return (
