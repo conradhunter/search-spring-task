@@ -1,4 +1,5 @@
 import React from "react";
+import placeholder from '../assets/placeholder.png';
 
 const Product = ({ product }) => {
 
@@ -21,11 +22,17 @@ const Product = ({ product }) => {
     }
   }
 
+  const insertPlaceholderImg = (event) => {
+    event.target.src = placeholder;
+  }
+
   
 
   return (
     <div className="product__container">
-      <img className="product__img" src={product.thumbnailImageUrl} />
+      <figure className="img__wrapper">
+        <img className="product__img" src={product.thumbnailImageUrl} onError={insertPlaceholderImg} />
+      </figure>
       <div className="product__info">
         <p className="product__name">{product.name}</p>
         {priceCheck()}

@@ -6,58 +6,63 @@ import Products from "./components/Products";
 import SearchBar from "./components/SearchBar";
 
 function App() {
-  const [dataResponse, setDataResponse] = useState([]);
-  const [input, setInput] = useState('');
-  const [query, setQuery] = useState('');
+  const [input, setInput] = useState("");
+  const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-
-  const getData = async () => {
-    const initialResponse = await fetch(
-      `https://scmq7n.a.searchspring.io/api/search/search.json?siteId=scmq7n&resultsFormat=native`);
-    const data = await initialResponse.json();
-    setLoading(true);
-    setDataResponse(data.results);
-    setLoading(false);
-    setProductsPerPage(data.pagination.perPage);
-    setTotalProducts(data.pagination.totalResults);
-    setTotalPages(data.pagination.totalPages);
-    setQuery('');
-    setInput('');
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  // Logic for dynamic API
-  // 1. Click new page => 2.change the page number on the api endpoint => 3.call api => 4.map data from that page
-
-  const dynamicAPI = 'https://scmq7n.a.searchspring.io/api/search/search.json?siteId=scmq7n&resultsFormat=native' + `&page=${page}`;
-
   const [currentPageApi, setCurrentPageApi] = useState([]);
+  const [productsPerPage, setProductsPerPage] = useState(0);
+  const [resultsLength, setResultsLength] = useState(0);
 
   const fetchDynamicAPI = async () => {
-    const response = await fetch(dynamicAPI);
+    setLoading(true);
+    const dynamicPageAPI =
+      "https://scmq7n.a.searchspring.io/api/search/search.json?siteId=scmq7n&resultsFormat=native" +
+      `&q=${query}` +
+      `&page=${page}`;
+    const response = await fetch(dynamicPageAPI);
     const data = await response.json();
-    console.log(data);
     setCurrentPageApi(data.results);
+    setLoading(false);
+    setTotalProducts(data.pagination.totalResults);
+    setTotalPages(data.pagination.totalPages);
+    setProductsPerPage(data.pagination.perPage);
+    setResultsLength(data.results.length);
+    setInput("");
+    console.log(data);
   };
 
   useEffect(() => {
     fetchDynamicAPI();
-  }, [page]);
+  }, [query, page]);
+
+  function handleChange(value) {
+    setInput(value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setQuery(input);
+    setInput('');
+    setPage(1);
+  }
 
   return (
     <div className="App">
-      <SearchBar input={input} />
+      <SearchBar
+        searchQuery={handleChange} // setKeyword={handleChange}
+        queryWord={input}           // keyword={input}
+        handleSubmit={handleSubmit} // handleSubmit={handleSubmit} 
+      />
       <Pagination
         totalPages={totalPages}
         page={page}
         setPage={setPage}
+        totalProducts={totalProducts}
+        productsPerPage={productsPerPage}
+        resultsLength={resultsLength}
       />
       <Products
         loading={loading}
@@ -69,6 +74,9 @@ function App() {
         totalPages={totalPages}
         page={page}
         setPage={setPage}
+        totalProducts={totalProducts}
+        productsPerPage={productsPerPage}
+        resultsLength={resultsLength}
       />
       <Footer />
     </div>

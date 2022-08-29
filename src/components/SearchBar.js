@@ -3,18 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./components.css";
 
-function handleSubmit() {}
-
-const SearchBar = ({ input }) => {
+const SearchBar = ({ searchQuery, queryWord, handleSubmit }) => {
   return (
-    <form id="search__form">
+    <form id="search__form" onSubmit={(e) => handleSubmit(e)}>
       <input
         id="input__search"
         type="text"
         placeholder="Search items, categories & brands..."
-        input={input}
+        value={queryWord}
+        onChange={(e) => searchQuery(e.target.value)}
       />
-      <button id="btn__search" onClick={handleSubmit()}>
+      <button id="btn__search" type="submit" onSubmit={(e) => handleSubmit(e)}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>
     </form>

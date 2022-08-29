@@ -5,6 +5,9 @@ const Pagination = ({
   totalPages,
   page,
   setPage,
+  totalProducts,
+  productsPerPage,
+  resultsLength
 }) => {
 
   function nextPage() {
@@ -44,6 +47,9 @@ const Pagination = ({
       <div className="flex-pag">
         <span>
           Showing page {page} of {totalPages} pages
+        </span>
+        <span>
+          Showing {(page * resultsLength + 1) - resultsLength } - {resultsLength * page} of {totalProducts} products
         </span>
         <div className="btn-container">
             {hidePrevButtons()}
