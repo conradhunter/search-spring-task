@@ -49,7 +49,7 @@ function App() {
 
   useEffect(() => {
     fetchDynamicAPI();
-  }, []);
+  }, [page]);
 
   return (
     <div className="App">
