@@ -42,7 +42,7 @@ const Pagination = ({
   return (
     <div className="pagination-btns">
       <div className="flex-pag">
-        <span>
+        <span className="pagination-results">
           Showing page {page} of {totalPages} pages
         </span>
         <div className="btn-container">

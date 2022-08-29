@@ -44,13 +44,14 @@ function App() {
     setPage(1);
   }
 
-  function catergorySearch() {
-
+  function catergorySearch(e) {
+    setQuery(e.target.value);
+    setPage(1);
   }
 
   return (
     <div className="App">
-      <Nav />
+      <Nav catergorySearch={catergorySearch} />
       <SearchBar
         searchQuery={handleChange}
         queryWord={input}           

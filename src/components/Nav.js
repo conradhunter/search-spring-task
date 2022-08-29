@@ -4,7 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import logo from "../assets/searchspring-logo.png";
 
-const Nav = () => {
+const Nav = ({catergorySearch}) => {
+
+    function reloadData() {
+        window.location.reload();
+    }
+
   return (
     <nav>
       <div className="top__nav">
@@ -31,19 +36,22 @@ const Nav = () => {
         </div>
       </div>
       <ul id="nav__links">
-        <button>
+        <button onClick={reloadData}>
+          <li>All</li>
+        </button>
+        <button disabled>
           <li>Tops</li>
         </button>
-        <button>
+        <button disabled>
           <li>Pants</li>
         </button>
-        <button>
+        <button disabled>
           <li>Dresses</li>
         </button>
-        <button>
+        <button disabled>
           <li>Shoes</li>
         </button>
-        <button>
+        <button disabled>
           <li>Hats</li>
         </button>
       </ul>

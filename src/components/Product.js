@@ -16,7 +16,7 @@ const Product = ({ product }) => {
     } else {
       return (
         <div className="prices">
-          <p className="product__price">${product.price}.00</p>
+          <p className="product__price" style={{color: 'black'}}>${product.price}.00</p>
         </div>
       )
     }

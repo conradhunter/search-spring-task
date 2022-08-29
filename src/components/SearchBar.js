@@ -6,16 +6,22 @@ import "./components.css";
 const SearchBar = ({ searchQuery, queryWord, handleSubmit }) => {
   return (
     <form id="search__form" onSubmit={(e) => handleSubmit(e)}>
-      <input
-        id="input__search"
-        type="text"
-        placeholder="Search items, categories & brands..."
-        value={queryWord}
-        onChange={(e) => searchQuery(e.target.value)}
+      <div className="input-btn__wrapper">
+        <input
+          id="input__search"
+          type="text"
+          placeholder="Search items, categories & brands..."
+          value={queryWord}
+          onChange={(e) => searchQuery(e.target.value)}
         />
-      <button id="btn__search" type="submit" onSubmit={(e) => handleSubmit(e)}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-      </button>
+        <button
+          id="btn__search"
+          type="submit"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </div>
     </form>
   );
 };
