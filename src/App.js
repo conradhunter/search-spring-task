@@ -29,18 +29,9 @@ function App() {
     setInput('');
   };
 
-
   useEffect(() => {
     getData();
   }, []);
-
-// Get products for each page
-  const indexOfLastProduct = page * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = dataResponse.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
 
   // Logic for dynamic API
   // 1. Click new page => 2.change the page number on the api endpoint => 3.call api => 4.map data from that page
@@ -60,35 +51,21 @@ function App() {
     fetchDynamicAPI();
   }, []);
 
-
-
-
-  // Change page
-  const paginate = (pageNumbers) => setPage(pageNumbers);
-
   return (
     <div className="App">
       <SearchBar input={input} />
       <Pagination
-        productsPerPage={productsPerPage}
-        totalProducts={totalProducts}
-        paginate={paginate}
         totalPages={totalPages}
         page={page}
         setPage={setPage}
-        fetchDynamicAPI={fetchDynamicAPI}
       />
       <Products
         loading={loading}
-        // dataResponse={currentProducts}
         currentPageApi={currentPageApi}
         fetchDynamicAPI={fetchDynamicAPI}
       />
 
       <Pagination
-        productsPerPage={productsPerPage}
-        totalProducts={totalProducts}
-        paginate={paginate}
         totalPages={totalPages}
         page={page}
         setPage={setPage}
