@@ -5,9 +5,6 @@ const Pagination = ({
   totalPages,
   page,
   setPage,
-  totalProducts,
-  productsPerPage,
-  resultsLength
 }) => {
 
   function nextPage() {
@@ -21,7 +18,7 @@ const Pagination = ({
   function hidePrevButtons() {
     if (page == 1) {
       return (
-        <button onClick={prevPage} className="prev pagination hidden">Prev</button>
+        <button disabled onClick={prevPage} className="prev pagination">Prev</button>
       )
     } else {
       return (
@@ -33,7 +30,7 @@ const Pagination = ({
   function hideNextButton() {
     if (page == totalPages) {
       return (
-        <button onClick={nextPage} className="next pagination hidden">Next</button>
+        <button disabled onClick={nextPage} className="next pagination">Next</button>
       ) 
     } else {
       return (
@@ -47,9 +44,6 @@ const Pagination = ({
       <div className="flex-pag">
         <span>
           Showing page {page} of {totalPages} pages
-        </span>
-        <span>
-          Showing {(page * resultsLength + 1) - resultsLength } - {resultsLength * page} of {totalProducts} products
         </span>
         <div className="btn-container">
             {hidePrevButtons()}

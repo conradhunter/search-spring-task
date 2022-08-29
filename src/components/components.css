@@ -26,6 +26,7 @@ nav {
 #mailingList {
     color: white;
     font-size: 18px;
+    cursor: not-allowed;
 }
 
 #auth__btns--wrapper {
@@ -36,10 +37,10 @@ nav {
     margin: 5px;
     padding: 2px 6px;
     font-size: 14px;
-    cursor: pointer;
+    cursor: not-allowed;
     border: none;
     border-radius: 3px;
-    background-color: rgb(108, 208, 255);
+    background-color: #f2f2f2;
     width: fit-content;
     display: flex;
     justify-content: center;
@@ -80,7 +81,7 @@ nav {
 }
 
 .icons:hover {
-    color: rgb(55, 55, 102);
+    color: rgb(55, 55, 55);
 }
 
 /* Search Bar Styling */
@@ -104,6 +105,8 @@ nav {
     cursor: pointer;
     background-color: white;
     border: 2px solid black;
+    position: absolute;
+    right: 36%;
 }
 
 #search__form {
@@ -124,7 +127,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 2px solid darkgray;
+    border-top: 2px solid black;
     margin-top: 25px;
     height: 100px;
 }
@@ -170,7 +173,7 @@ footer {
 }
 
 .product__info {
-    background-color: rgb(176, 176, 176);
+    background-color: rgba(226, 255, 253, 1);
     width: inherit;
     height: 100px;
     padding: 12px;

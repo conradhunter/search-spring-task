@@ -11,11 +11,8 @@ function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [totalProducts, setTotalProducts] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPageApi, setCurrentPageApi] = useState([]);
-  const [productsPerPage, setProductsPerPage] = useState(0);
-  const [resultsLength, setResultsLength] = useState(0);
 
   const fetchDynamicAPI = async () => {
     setLoading(true);
@@ -27,10 +24,7 @@ function App() {
     const data = await response.json();
     setCurrentPageApi(data.results);
     setLoading(false);
-    setTotalProducts(data.pagination.totalResults);
     setTotalPages(data.pagination.totalPages);
-    setProductsPerPage(data.pagination.perPage);
-    setResultsLength(data.results.length);
     setInput("");
     console.log(data);
   };
@@ -50,21 +44,22 @@ function App() {
     setPage(1);
   }
 
+  function catergorySearch() {
+
+  }
+
   return (
     <div className="App">
       <Nav />
       <SearchBar
-        searchQuery={handleChange} // setKeyword={handleChange}
-        queryWord={input}           // keyword={input}
-        handleSubmit={handleSubmit} // handleSubmit={handleSubmit} 
+        searchQuery={handleChange}
+        queryWord={input}           
+        handleSubmit={handleSubmit}
       />
       <Pagination
         totalPages={totalPages}
         page={page}
         setPage={setPage}
-        totalProducts={totalProducts}
-        productsPerPage={productsPerPage}
-        resultsLength={resultsLength}
       />
       <Products
         loading={loading}
@@ -76,9 +71,6 @@ function App() {
         totalPages={totalPages}
         page={page}
         setPage={setPage}
-        totalProducts={totalProducts}
-        productsPerPage={productsPerPage}
-        resultsLength={resultsLength}
       />
       <Footer />
     </div>
