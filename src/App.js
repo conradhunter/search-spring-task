@@ -17,7 +17,7 @@ function App() {
 
   const getData = async () => {
     const initialResponse = await fetch(
-      `https://scmq7n.a.searchspring.io/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=1`);
+      `https://scmq7n.a.searchspring.io/api/search/search.json?siteId=scmq7n&resultsFormat=native`);
     const data = await initialResponse.json();
     setLoading(true);
     setDataResponse(data.results);
@@ -27,7 +27,6 @@ function App() {
     setTotalPages(data.pagination.totalPages);
     setQuery('');
     setInput('');
-    console.log(data);
   };
 
 
@@ -46,6 +45,20 @@ function App() {
   // Logic for dynamic API
   // 1. Click new page => 2.change the page number on the api endpoint => 3.call api => 4.map data from that page
 
+  const dynamicAPI = 'https://scmq7n.a.searchspring.io/api/search/search.json?siteId=scmq7n&resultsFormat=native' + `&page=${page}`;
+
+  const [currentPageApi, setCurrentPageApi] = useState([]);
+
+  const fetchDynamicAPI = async () => {
+    const response = await fetch(dynamicAPI);
+    const data = await response.json();
+    console.log(data);
+    setCurrentPageApi(data.results);
+  };
+
+  useEffect(() => {
+    fetchDynamicAPI();
+  }, []);
 
 
 
@@ -63,10 +76,13 @@ function App() {
         totalPages={totalPages}
         page={page}
         setPage={setPage}
+        fetchDynamicAPI={fetchDynamicAPI}
       />
       <Products
         loading={loading}
-        dataResponse={currentProducts}
+        // dataResponse={currentProducts}
+        currentPageApi={currentPageApi}
+        fetchDynamicAPI={fetchDynamicAPI}
       />
 
       <Pagination

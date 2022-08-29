@@ -1,27 +1,26 @@
-import React, { useRef } from "react";
+import React from "react";
 
 const Product = ({ product }) => {
 
-  const salePrice = useRef();
-  const price = useRef();
-  
 
   const priceCheck = () => {
-    if (salePrice > price) {
+
+    if (product.msrp > product.price) {
       return (
         <div className="prices">
-          <p ref={price} className="product__price">${product.price}.00</p>
-          <p ref={salePrice} className="product__msrp">${product.msrp}.00</p>
+          <p className="product__price">${product.price}.00</p>
+          <p className="product__msrp">${product.msrp}.00</p>
         </div>
       )
     } else {
       return (
         <div className="prices">
-          <p ref={price} className="product__price">${product.price}.00</p>
+          <p className="product__price">${product.price}.00</p>
         </div>
       )
     }
   }
+
   
 
   return (

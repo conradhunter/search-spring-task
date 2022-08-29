@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Product from "./Product";
 import './components.css';
 
-const Products = ({ dataResponse, loading }) => {
+const Products = ({ loading, currentPageApi }) => {
 
   if (loading) {
     return <h1>Loading...</h1>
@@ -11,8 +11,8 @@ const Products = ({ dataResponse, loading }) => {
       <>
       <div className="row">
         <div className="products-wrapper">
-          {dataResponse.map((product, productId) => (
-            <Product dataResponse={dataResponse} product={product} key={productId} />
+          {currentPageApi.map((product, productId) => (
+            <Product currentPageApi={currentPageApi} product={product} key={productId} />
             ))}
         </div>
       </div>
