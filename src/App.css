@@ -5,7 +5,6 @@
 }
 
 .App {
-    padding: 50px 0 0 0;
     background-image: url('./assets/patterns.svg');
     background-repeat: repeat;
     min-height: 100vh;

@@ -12,7 +12,7 @@ const SearchBar = ({ searchQuery, queryWord, handleSubmit }) => {
         placeholder="Search items, categories & brands..."
         value={queryWord}
         onChange={(e) => searchQuery(e.target.value)}
-      />
+        />
       <button id="btn__search" type="submit" onSubmit={(e) => handleSubmit(e)}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>

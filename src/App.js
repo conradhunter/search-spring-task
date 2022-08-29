@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
+import Nav from "./components/Nav";
 import Pagination from "./components/Pagination";
 import Products from "./components/Products";
 import SearchBar from "./components/SearchBar";
@@ -51,6 +52,7 @@ function App() {
 
   return (
     <div className="App">
+      <Nav />
       <SearchBar
         searchQuery={handleChange} // setKeyword={handleChange}
         queryWord={input}           // keyword={input}
