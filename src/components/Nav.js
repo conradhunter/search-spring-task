@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import logo from "../assets/searchspring-logo.png";
 
-const Nav = ({catergorySearch}) => {
+const Nav = () => {
 
     function reloadData() {
         window.location.reload();
